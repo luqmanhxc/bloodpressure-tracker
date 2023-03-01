@@ -13,7 +13,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 
-const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -57,7 +56,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        BP TRACKER
+                        BP|TRACKER
                     </Typography>
 
                     <Box
@@ -94,16 +93,9 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {page}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">Test</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <BloodtypeIcon
@@ -133,15 +125,18 @@ function Navbar() {
                             display: { xs: 'none', md: 'flex' },
                         }}
                     >
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            Home
+                        </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            BP Chart
+                        </Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
