@@ -26,8 +26,6 @@ const BpForm = () => {
                 bp
             );
 
-            const created = response.data.createdAt;
-
             if (response.status) {
                 setSystolic('');
                 setDiastolic('');
