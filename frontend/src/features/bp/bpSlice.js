@@ -23,6 +23,9 @@ export const bpSlice = createSlice({
         addBp: (state, action) => {
             state.bps = [action.payload, ...state.bps];
         },
+        removeBp: (state, action) => {
+            state.bps = state.bps.filter((bp) => bp._id !== action.payload);
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchBps.pending, (state) => {
@@ -42,6 +45,6 @@ export const bpSlice = createSlice({
     },
 });
 
-export const { resetBps, addBp } = bpSlice.actions;
+export const { resetBps, addBp, removeBp } = bpSlice.actions;
 
 export default bpSlice.reducer;

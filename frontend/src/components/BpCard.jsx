@@ -1,9 +1,24 @@
+import { checkBp } from '../utils/utils';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { removeBp } from '../features/bp/bpSlice';
+
+// material ui
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { checkBp } from '../utils/utils';
 
-const bpCard = ({ bp: { createdAt, systolic, diastolic, pulserate } }) => {
+const bpCard = ({ bp: { _id, createdAt, systolic, diastolic, pulserate } }) => {
+    const dispatch = useDispatch();
+
+    const handleClick = async () => {
+        const response = await axios.delete(
+            `http://localhost:4000/api/bps/${_id}`
+        );
+        if (response.status) {
+            dispatch(removeBp(_id));
+        }
+    };
     return (
         <Paper
             elevation={3}
@@ -30,7 +45,17 @@ const bpCard = ({ bp: { createdAt, systolic, diastolic, pulserate } }) => {
             </Typography>
             <DeleteIcon
                 color="error"
-                sx={{ position: 'absolute', top: 20, right: 20 }}
+                sx={{
+                    fontSize: '2rem',
+                    position: 'absolute',
+                    top: 20,
+                    right: 20,
+                    cursor: 'pointer',
+                    '&:hover': {
+                        fontSize: '2.1rem',
+                    },
+                }}
+                onClick={handleClick}
             />
         </Paper>
     );
