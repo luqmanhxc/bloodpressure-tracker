@@ -146,8 +146,8 @@ function Navbar() {
                                 sx={{ p: 0 }}
                             >
                                 <Avatar
-                                    alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
+                                    alt="User profile picture"
+                                    src="public\avatar-temp.jpeg"
                                 />
                             </IconButton>
                         </Tooltip>
