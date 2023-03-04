@@ -7,12 +7,14 @@ import { addBp } from '../features/bp/bpSlice';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const BpForm = () => {
     const [systolic, setSystolic] = useState('');
     const [diastolic, setDiastolic] = useState('');
     const [pulserate, setPulserate] = useState('');
     const [error, setError] = useState(null);
+    const [emptyFields, setEmptyFields] = useState([]);
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
@@ -31,11 +33,14 @@ const BpForm = () => {
                 setDiastolic('');
                 setPulserate('');
                 setError(null);
+                setEmptyFields([]);
                 console.log('New bp added', response.data);
                 dispatch(addBp(response.data));
             }
         } catch (err) {
-            console.log(err);
+            console.log(err.response);
+            setEmptyFields(err.response.data.emptyFields);
+            setError(err.response.data.error);
         }
     };
 
@@ -54,6 +59,7 @@ const BpForm = () => {
                 variant="outlined"
                 value={systolic}
                 onChange={(e) => setSystolic(e.target.value)}
+                error={emptyFields.includes('systolic')}
             />
             <TextField
                 id="diastolic"
@@ -61,6 +67,7 @@ const BpForm = () => {
                 variant="outlined"
                 value={diastolic}
                 onChange={(e) => setDiastolic(e.target.value)}
+                error={emptyFields.includes('diastolic')}
             />
             <TextField
                 id="pulserate"
@@ -68,10 +75,15 @@ const BpForm = () => {
                 variant="outlined"
                 value={pulserate}
                 onChange={(e) => setPulserate(e.target.value)}
+                error={emptyFields.includes('pulserate')}
             />
             <Button variant="contained" onClick={handleSubmit}>
                 Add BP
             </Button>
+
+            <Typography variant="subtitle1" component="p" color="error">
+                {error}
+            </Typography>
         </Box>
     );
 };
