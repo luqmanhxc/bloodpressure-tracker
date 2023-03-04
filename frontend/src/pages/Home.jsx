@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { fetchBps, resetBps } from '../features/bp/bpSlice';
+import { fetchBps } from '../features/bp/bpSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 // components
