@@ -24,7 +24,7 @@ const BpForm = () => {
 
         try {
             const response = await axios.post(
-                'https://bloodpressure-tracker-api.onrender.com',
+                'https://bloodpressure-tracker-api.onrender.com/api/bps',
                 bp
             );
 

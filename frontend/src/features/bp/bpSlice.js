@@ -9,7 +9,7 @@ const initialState = {
 
 export const fetchBps = createAsyncThunk('bps/fetchBps', () => {
     return axios
-        .get('http://localhost:4000/api/bps/')
+        .get('https://bloodpressure-tracker-api.onrender.com/api/bps/')
         .then((response) => response.data);
 });
 

@@ -17,7 +17,7 @@ const bpCard = ({ bp: { _id, createdAt, systolic, diastolic, pulserate } }) => {
 
     const handleClick = async () => {
         const response = await axios.delete(
-            `http://localhost:4000/api/bps/${_id}`
+            `https://bloodpressure-tracker-api.onrender.com/api/bps/${_id}`
         );
         if (response.status) {
             dispatch(removeBp(_id));
